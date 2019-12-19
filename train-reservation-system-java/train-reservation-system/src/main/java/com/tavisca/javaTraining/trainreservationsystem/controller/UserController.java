@@ -1,12 +1,17 @@
 package com.tavisca.javaTraining.trainreservationsystem.controller;
 
+import com.tavisca.javaTraining.trainreservationsystem.models.User;
+import com.tavisca.javaTraining.trainreservationsystem.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
+    @Autowired
+    UserService userService;
 
     //Register-Login APIs
 
@@ -16,8 +21,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public void registerUser(){
-
+    public String registerUser(@RequestBody User user){
+        userService.registerUser(user);
+        return "OK";
     }
 
 
